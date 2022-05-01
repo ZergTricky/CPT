@@ -1,5 +1,7 @@
 
-// Dynamic Bitset, works as good as std::bitset does.
+// Bitset with non-constexpr size for mainly competitive programming purposes
+// It has the most useful and frequent operators.
+// In worst cases works ~1.5 times slower than STL std::bitset
 
 #ifndef BITSET_H
 #define BITSET_H
@@ -57,7 +59,7 @@ public:
         for (size_t i = 0; i < capacity; ++i) {
             bits[i] = other.bits[i];
         }
-        return *this; //something wrong here?
+        return *this;
     }
 
     Bitset &set() noexcept {
@@ -226,7 +228,7 @@ public:
     }
 
     size_t _Find_first() const noexcept {
-        // can be improved i guess
+        // can be improved
         for (size_t i = 0; i < capacity; ++i) {
             if (bits[i] == 0)continue;
             return __lg(bits[i] ^ (bits[i] - 1)) + i * 64;
